@@ -1,6 +1,6 @@
 <p align="center">
     <a href="http://www.openmindsclub.net/" target="_blank">
-        <img src="http://www.openmindsclub.net/images/logo.png" width="400" alt="OpenMindsClub" />
+        <img src="http://www.openmindsclub.net/images/favicon.png" width="400" alt="OpenMindsClub" />
     </a>
 </p>
 
