@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
+
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Other */
 
@@ -28,8 +29,6 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'other_id',
-            'user_id',
             'other_first_name',
             'other_last_name',
             'other_birth_date',

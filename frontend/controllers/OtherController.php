@@ -8,6 +8,7 @@ use frontend\models\OtherSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use frontend\models\SignupForm;
 
 /**
  * OtherController implements the CRUD actions for Other model.
@@ -64,12 +65,21 @@ class OtherController extends Controller
     public function actionCreate()
     {
         $model = new Other();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $user = new SignupForm();
+        if ($model->load(Yii::$app->request->post()) && $user->load(Yii::$app->request->post())) 
+        {
+            if($u = $user->signup())
+            {
+            $u->user_type ="other";
+            $u->save();    
+            $model->user_id = $u->id;
+            $model->save();
             return $this->redirect(['view', 'id' => $model->other_id]);
+            }   
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'user' => $user,
             ]);
         }
     }
