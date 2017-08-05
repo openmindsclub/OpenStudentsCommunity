@@ -8,6 +8,7 @@ use backend\models\RendezVousSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use frontend\models\SignupForm;
 
 /**
  * StudentController implements the CRUD actions for Student model.
@@ -63,13 +64,23 @@ class StudentController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Student();
+            $model = new Student();
+            $user = new SignUpForm();
+        if ($model->load(Yii::$app->request->post()) && $user->load(Yii::$app->request->post())) {
+                if ($u = $user->signup()) 
+                {
+                    
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $model->user_id = $u->id;
+            $u->user_type = 'student';
+            $u->save();
+            $model->save();
             return $this->redirect(['view', 'id' => $model->student_id]);
+            }
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'user' => $user,
             ]);
         }
     }

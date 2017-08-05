@@ -66,7 +66,7 @@ class SpecialtyController extends Controller
         $model = new Specialty();
 
         if ($model->load(Yii::$app->request->post()) ) {
-
+            
             $model->save();
             return $this->redirect(['view', 'id' => $model->specialty_id]);
         } else {

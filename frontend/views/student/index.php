@@ -24,14 +24,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'student_id',
-            'user_id',
-            'school_id',
+            'school.school_name',
             'student_fisrt_name',
             'student_last_name',
-            // 'student_birth_date',
+            'student_birth_date',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            //['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 <?php Pjax::end(); ?></div>

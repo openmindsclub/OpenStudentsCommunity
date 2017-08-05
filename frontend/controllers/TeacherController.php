@@ -8,6 +8,7 @@ use frontend\models\TeacherSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use frontend\models\SignupForm;
 
 /**
  * TeacherController implements the CRUD actions for Teacher model.
@@ -64,12 +65,21 @@ class TeacherController extends Controller
     public function actionCreate()
     {
         $model = new Teacher();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $user = new SignupForm();
+        if ($model->load(Yii::$app->request->post()) && $user->load(Yii::$app->request->post())) 
+        {   
+            if($u = $user->signup())
+            {
+             $u->user_type = 'teacher';
+             $u->save();
+             $model->user_id = $u->id;
+             $model->save();
             return $this->redirect(['view', 'id' => $model->teacher_id]);
+            }
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'user' => $user,
             ]);
         }
     }

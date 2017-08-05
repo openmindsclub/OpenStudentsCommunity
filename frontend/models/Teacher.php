@@ -54,8 +54,8 @@ class Teacher extends \yii\db\ActiveRecord
         return [
             'teacher_id' => 'Teacher ID',
             'user_id' => 'User ID',
-            'school_id' => 'School ID',
-            'domain_id' => 'Domain ID',
+            'school_id' => 'School',
+            'domain_id' => 'Domain',
             'teacher_first_name' => 'Teacher First Name',
             'teacher_last_name' => 'Teacher Last Name',
             'teacher_birth_date' => 'Teacher Birth Date',

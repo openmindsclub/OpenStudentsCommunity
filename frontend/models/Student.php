@@ -51,7 +51,7 @@ class Student extends \yii\db\ActiveRecord
         return [
             'student_id' => 'Student ID',
             'user_id' => 'User ID',
-            'school_id' => 'School ID',
+            'school_id' => 'School name',
             'student_fisrt_name' => 'Student Fisrt Name',
             'student_last_name' => 'Student Last Name',
             'student_birth_date' => 'Student Birth Date',

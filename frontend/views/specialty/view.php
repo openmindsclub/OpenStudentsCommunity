@@ -28,6 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
+            'domain.domain_name',
             'specialty_name',
             'specialty_description:ntext',
         ],

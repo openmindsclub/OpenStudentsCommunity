@@ -32,9 +32,9 @@ class Specialty extends \yii\db\ActiveRecord
     {
         return [
             [['domain_id', 'specialty_name'], 'required'],
-            [['domain_id'], 'integer'],
             [['specialty_description'], 'string'],
             [['specialty_name'], 'string', 'max' => 150],
+            [['specialty_name, specialty_description, Domain'],'safe'],
             [['domain_id'], 'exist', 'skipOnError' => true, 'targetClass' => Domain::className(), 'targetAttribute' => ['domain_id' => 'domain_id']],
         ];
     }
