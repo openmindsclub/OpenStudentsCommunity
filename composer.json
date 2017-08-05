@@ -17,13 +17,20 @@
         "php": ">=5.4.0",
         "yiisoft/yii2": "~2.0.6",
         "yiisoft/yii2-bootstrap": "~2.0.0",
-        "yiisoft/yii2-swiftmailer": "~2.0.0"
+        "yiisoft/yii2-swiftmailer": "~2.0.0",
+        "2amigos/yii2-date-picker-widget": "~1.0",
+	"mdmsoft/yii2-admin": "~2.0",
+        "kartik-v/yii2-grid": "@dev",
+        "reportico/yii2-reportico": "dev-master",
+        "wbraganca/yii2-dynamicform": "*",
+        "kartik-v/yii2-editable": "@dev",
+        "2amigos/yii2-grid-view-library": "~1.0",
+        "perminder-klair/yii2-dropzone": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
         "yiisoft/yii2-gii": "~2.0.0",
-        "yiisoft/yii2-faker": "~2.0.0",
-
+        "yiisoft/yii2-faker": "~2.0.0",	
         "codeception/base": "^2.2.3",
         "codeception/verify": "~0.3.1"
     },
