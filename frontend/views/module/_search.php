@@ -14,8 +14,7 @@ use yii\widgets\ActiveForm;
         'action' => ['index'],
         'method' => 'get',
     ]); ?>
-
-    <?= $form->field($model, 'module_id') ?>
+    <?= $form->field($model, 'domain_id') ?>
 
     <?= $form->field($model, 'specialty_id') ?>
 

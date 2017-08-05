@@ -42,7 +42,7 @@ class Domain extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'domain_id' => 'Domain ID',
+            'domain_id' => 'Domain name',
             'domain_name' => 'Domain Name',
             'domain_description' => 'Domain Description',
         ];

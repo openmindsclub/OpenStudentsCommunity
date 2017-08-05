@@ -15,11 +15,9 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'specialty_id') ?>
-
     <?= $form->field($model, 'domain_id') ?>
 
-    <?= $form->field($model, 'specialiity_name') ?>
+    <?= $form->field($model, 'specialty_name') ?>
 
     <?= $form->field($model, 'specialty_description') ?>
 

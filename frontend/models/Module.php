@@ -20,6 +20,10 @@ class Module extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+
+    public $domain;
+
+
     public static function tableName()
     {
         return 'module';
@@ -46,11 +50,13 @@ class Module extends \yii\db\ActiveRecord
     {
         return [
             'module_id' => 'Module ID',
-            'specialty_id' => 'Specialty ID',
+            'specialty_id' => 'Specialty name',
             'module_name' => 'Module Name',
             'module_description' => 'Module Description',
         ];
     }
+
+
 
     /**
      * @return \yii\db\ActiveQuery

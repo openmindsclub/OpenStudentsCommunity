@@ -65,7 +65,9 @@ class SpecialtyController extends Controller
     {
         $model = new Specialty();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) ) {
+
+            $model->save();
             return $this->redirect(['view', 'id' => $model->specialty_id]);
         } else {
             return $this->render('create', [
@@ -120,5 +122,35 @@ class SpecialtyController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+
+       public function actionLists($id)
+    {
+        
+        $countSpecialties = Specialty::find()
+                ->where(['domain_id' => $id])
+                ->count();
+
+        $specialties = Specialty::find()
+                ->where(['domain_id' => $id])
+                ->all();
+            if($countSpecialties>0)
+            foreach($specialties as $specialty){
+                echo "<option value='".$specialty->specialty_id."'>".$specialty->specialty_name."</option>";
+            }
+        
+        else{
+            echo "<option>-</option>";
+        }
+        
+        //echo "<option>-</option>";
+
+    }
+
+     public function beforeAction($action) 
+    {
+    $this->enableCsrfValidation = false;
+    return parent::beforeAction($action);
     }
 }

@@ -15,9 +15,9 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'domain_id') ?>
-
     <?= $form->field($model, 'domain_name') ?>
+
+    <?= $form->field($model, 'domain_description') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
