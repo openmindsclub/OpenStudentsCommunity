@@ -10,6 +10,7 @@ use Yii;
  * @property integer $module_id
  * @property integer $specialty_id
  * @property string $module_name
+ * @property string $module_description
  *
  * @property Specialty $specialty
  * @property Publication[] $publications
@@ -32,6 +33,7 @@ class Module extends \yii\db\ActiveRecord
         return [
             [['specialty_id', 'module_name'], 'required'],
             [['specialty_id'], 'integer'],
+            [['module_description'], 'string'],
             [['module_name'], 'string', 'max' => 200],
             [['specialty_id'], 'exist', 'skipOnError' => true, 'targetClass' => Specialty::className(), 'targetAttribute' => ['specialty_id' => 'specialty_id']],
         ];
@@ -46,6 +48,7 @@ class Module extends \yii\db\ActiveRecord
             'module_id' => 'Module ID',
             'specialty_id' => 'Specialty ID',
             'module_name' => 'Module Name',
+            'module_description' => 'Module Description',
         ];
     }
 

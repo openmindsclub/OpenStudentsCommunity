@@ -27,6 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'specialty_id',
             'domain_id',
             'specialiity_name',
+            'specialty_description:ntext',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

@@ -53,9 +53,6 @@ class Comment extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'comment_id' => 'Comment ID',
-            'user_id' => 'User ID',
-            'publication_id' => 'Publication ID',
             'comment_text_content' => 'Comment Text Content',
             'comment_file_path' => 'Comment File Path',
             'comment_creation_time' => 'Comment Creation Time',

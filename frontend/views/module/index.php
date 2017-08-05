@@ -27,6 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'module_id',
             'specialty_id',
             'module_name',
+            'module_description:ntext',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

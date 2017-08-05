@@ -9,6 +9,7 @@ use Yii;
  *
  * @property integer $domain_id
  * @property string $domain_name
+ * @property string $domain_description
  *
  * @property Specialty[] $specialties
  * @property Teacher[] $teachers
@@ -30,6 +31,7 @@ class Domain extends \yii\db\ActiveRecord
     {
         return [
             [['domain_name'], 'required'],
+            [['domain_description'], 'string'],
             [['domain_name'], 'string', 'max' => 150],
         ];
     }
@@ -42,6 +44,7 @@ class Domain extends \yii\db\ActiveRecord
         return [
             'domain_id' => 'Domain ID',
             'domain_name' => 'Domain Name',
+            'domain_description' => 'Domain Description',
         ];
     }
 

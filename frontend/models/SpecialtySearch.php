@@ -19,7 +19,7 @@ class SpecialtySearch extends Specialty
     {
         return [
             [['specialty_id', 'domain_id'], 'integer'],
-            [['specialiity_name'], 'safe'],
+            [['specialiity_name', 'specialty_description'], 'safe'],
         ];
     }
 
@@ -63,7 +63,8 @@ class SpecialtySearch extends Specialty
             'domain_id' => $this->domain_id,
         ]);
 
-        $query->andFilterWhere(['like', 'specialiity_name', $this->specialiity_name]);
+        $query->andFilterWhere(['like', 'specialiity_name', $this->specialiity_name])
+            ->andFilterWhere(['like', 'specialty_description', $this->specialty_description]);
 
         return $dataProvider;
     }

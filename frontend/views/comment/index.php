@@ -23,16 +23,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'comment_id',
-            'user_id',
-            'publication_id',
             'comment_text_content:ntext',
             'comment_file_path',
             // 'comment_creation_time',
             // 'comment_rate',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            //['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 <?php Pjax::end(); ?></div>

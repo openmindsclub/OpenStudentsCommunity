@@ -19,7 +19,7 @@ class ModuleSearch extends Module
     {
         return [
             [['module_id', 'specialty_id'], 'integer'],
-            [['module_name'], 'safe'],
+            [['module_name', 'module_description'], 'safe'],
         ];
     }
 
@@ -63,7 +63,8 @@ class ModuleSearch extends Module
             'specialty_id' => $this->specialty_id,
         ]);
 
-        $query->andFilterWhere(['like', 'module_name', $this->module_name]);
+        $query->andFilterWhere(['like', 'module_name', $this->module_name])
+            ->andFilterWhere(['like', 'module_description', $this->module_description]);
 
         return $dataProvider;
     }
