@@ -15,3 +15,7 @@ echo \kato\DropZone::widget([
        ],
    ]);
 ?>
+
+ <div class="form-group">
+        <?= Html::a( 'finish loading files', ['/publication/index'], ['class'=>'btn btn-primary']) ?>
+    </div>

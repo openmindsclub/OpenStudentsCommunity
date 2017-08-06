@@ -136,7 +136,7 @@ class PublicationController extends Controller
                 return $this->render('upload');
             }
 
-            return false;
+            return null;
         }
 
     /**

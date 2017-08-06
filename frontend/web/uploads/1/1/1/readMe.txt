@@ -1,1 +1,0 @@
-Voici le tout premier cours d'algorithmique
