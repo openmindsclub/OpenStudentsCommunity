@@ -10,10 +10,6 @@ use frontend\models\Module;
 use frontend\models\Tag;
 use dosamigos\datepicker\DatePicker;
 
-
-/* @var $this yii\web\View */
-/* @var $model frontend\models\Publication */
-/* @var $form yii\widgets\ActiveForm */
 ?>
 
 <div class="publication-form">
@@ -25,7 +21,7 @@ use dosamigos\datepicker\DatePicker;
                                     ['prompt'=>'Select a domain',
                                     'onchange'=>'
                                     $.post( "index.php?r=specialty/lists&id='.'"+$(this).val(),function( data ) {
-                                      $( "select#publication-specialty" ).html( data );
+                                      $( "select#publication-specialty  " ).html( data );
                                     });'
     
                             ]); ?>
@@ -39,9 +35,6 @@ use dosamigos\datepicker\DatePicker;
                                     });'
                         ]); ?> 
 
-
-
-
     <?= $form->field($model,'module_id')->dropDownList(
                         ArrayHelper::map(Module::find()->all(), 'module_id','module_name'),
                         ['prompt'=> 'select a module']);?>
@@ -53,9 +46,6 @@ use dosamigos\datepicker\DatePicker;
     <?= $form->field($model, 'publication_name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'publication_text_content')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'publication_directory')->textInput(['maxlength' => true]) ?>
-
 
     <?= $form->field($model, 'publication_place')->dropDownList(
                    ArrayHelper::map(School::find()->all(),'school_id','school_name')

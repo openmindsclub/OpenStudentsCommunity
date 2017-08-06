@@ -50,6 +50,7 @@ class Publication extends \yii\db\ActiveRecord
             [['publication_text_content'], 'string'],
             [['publication_creation_time', 'publication_date'], 'safe'],
             [['publication_name'], 'string', 'max' => 255],
+            [['domain','specialty'], 'required'],
             [['publication_directory'], 'string', 'max' => 256],
             [['module_id'], 'exist', 'skipOnError' => true, 'targetClass' => Module::className(), 'targetAttribute' => ['module_id' => 'module_id']],
             [['tag_id'], 'exist', 'skipOnError' => true, 'targetClass' => Tag::className(), 'targetAttribute' => ['tag_id' => 'tag_id']],

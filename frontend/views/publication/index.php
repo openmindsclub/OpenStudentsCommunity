@@ -28,8 +28,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'tag.tag_name',
             'publication_name',
             'publication_text_content',
-            // 'publication_directory',
-            // 'publication_creation_time',
             'publication_place',
             'publication_date',
             'publication_rate',
