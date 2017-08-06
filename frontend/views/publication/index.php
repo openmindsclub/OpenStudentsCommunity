@@ -28,8 +28,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'tag.tag_name',
             'publication_name',
             'publication_text_content',
-            'publication_place',
+            'school.school_name',
             'publication_date',
+            'publication_directory',
             'publication_rate',
 
             ['class' => 'yii\grid\ActionColumn'],

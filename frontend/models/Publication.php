@@ -55,6 +55,7 @@ class Publication extends \yii\db\ActiveRecord
             [['module_id'], 'exist', 'skipOnError' => true, 'targetClass' => Module::className(), 'targetAttribute' => ['module_id' => 'module_id']],
             [['tag_id'], 'exist', 'skipOnError' => true, 'targetClass' => Tag::className(), 'targetAttribute' => ['tag_id' => 'tag_id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
+            [['publication_place'], 'exist', 'skipOnError' => true, 'targetClass' => School::className(), 'targetAttribute' => ['publication_place' => 'school_id']],
         ];
     }
 
@@ -86,9 +87,11 @@ class Publication extends \yii\db\ActiveRecord
         return $this->hasMany(Comment::className(), ['publication_id' => 'publication_id']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
+    public function getSchool()
+    {
+        return $this->hasOne(School::className(), ['school_id' => 'publication_place']);
+    }
+
     public function getModule()
     {
         return $this->hasOne(Module::className(), ['module_id' => 'module_id']);

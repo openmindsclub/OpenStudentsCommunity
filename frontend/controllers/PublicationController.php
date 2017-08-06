@@ -58,25 +58,24 @@ class PublicationController extends Controller
         ]);
     }
 
-    /**
-     * Creates a new Publication model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
+
     public function actionCreate()
     {
         $model = new Publication();
-
-
-
         if ($model->load(Yii::$app->request->post()) )
-        {
-
-            $model->publication_directory = 
+        {        
+            //completing the model data to add it in the db
+            $model->publication_directory = "";
+            $model->user_id = Yii::$app->user->id;
+            $model->publication_creation_time = Date('Y-m-d h:m:s');
+            $model->publication_rate=0;
+            $model->save();
+            //need the publication id to save the directory
+            //savong the directory
+              $model->publication_directory = 
             'uploads/'.$model->domain.'/'.$model->specialty.'/'.$model->module_id.'/'.$model->publication_id;
 
-
-             //opening a session to save the upload path. It is needed in the actionUpload method
+            //Creating a session to save the files path
             $session = yii::$app->session;
             if(! $session->isActive)
             {
@@ -88,13 +87,12 @@ class PublicationController extends Controller
             //puting the text content of the publication in an information file.
             if(! file_exists($model->publication_directory))
                 mkdir($model->publication_directory,0777,true);
-
             $file =fopen($model->publication_directory.'/'.'readMe.txt', 'w') or die("Unable to open file!");
             fwrite($file, $model->publication_text_content);
-            $model->user_id = Yii::$app->user->id;
-            $model->publication_creation_time = Date('Y-m-d h:m:s');
-            $model->publication_rate=0;
+
+            //saving the model with the new directory path
             $model->save();
+          
             return $this->redirect(['upload', 'id' => $model->publication_id]);
         } else {
             return $this->render('create', [
@@ -103,10 +101,14 @@ class PublicationController extends Controller
         }
     }
 
+
+    //Method called when we need to load a files
      public function actionUpload()
         {
             $fileName = 'file';
             
+
+            //opening the session to get the path of the path of the directory
             $session = yii::$app->session;
             if(! $session->isActive)
             {
