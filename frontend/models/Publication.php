@@ -30,6 +30,10 @@ class Publication extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+
+    public $domain;
+    public $specialty;
+
     public static function tableName()
     {
         return 'publication';

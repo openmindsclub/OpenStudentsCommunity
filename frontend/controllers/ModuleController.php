@@ -121,4 +121,32 @@ class ModuleController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+       public function actionLists($id)
+    {
+        
+        $countModules = Module::find()
+                ->where(['specialty_id' => $id])
+                ->count();
+
+        $modules = Module::find()
+                ->where(['specialty_id' => $id])
+                ->all();
+
+            if($countModules>0)
+            foreach($modules as $module){
+                echo "<option value='".$module->module_id."'>".$module->module_name."</option>";
+            }
+        
+        else{
+            echo "<option>-</option>";
+        }
+    }
+
+
+    public function beforeAction($action) 
+    {
+        $this->enableCsrfValidation = false;
+        return parent::beforeAction($action);
+    }
 }
