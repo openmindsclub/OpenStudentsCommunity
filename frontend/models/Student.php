@@ -37,15 +37,23 @@ class Student extends \yii\db\ActiveRecord
             [['user_id', 'school_id', 'student_fisrt_name', 'student_last_name', 'student_birth_date'], 'required'],
             [['user_id', 'school_id'], 'integer'],
             [['student_birth_date'], 'safe'],
+            ['student_birth_date','checkDate'],
             [['student_fisrt_name', 'student_last_name'], 'string', 'max' => 100],
             [['school_id'], 'exist', 'skipOnError' => true, 'targetClass' => School::className(), 'targetAttribute' => ['school_id' => 'school_id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
 
-    /**
-     * @inheritdoc
-     */
+    
+     public function checkDate($attribute,$params)
+    {
+        $today = Date ('Y-m-d');
+        if($this->student_birth_date > $today)
+        {
+            $this->addError($attribute, 'Invalid date, enter a valid one');
+        }
+    }
+
     public function attributeLabels()
     {
         return [

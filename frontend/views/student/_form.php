@@ -15,7 +15,7 @@ use dosamigos\datepicker\DatePicker;
 
 <div class="student-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['enableAjaxValidation'=>true]); ?>
 
    
 

@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use frontend\models\SignupForm;
+use yii\widgets\ActiveForm;
 
 /**
  * StudentController implements the CRUD actions for Student model.
@@ -66,22 +67,30 @@ class StudentController extends Controller
     {
             $model = new Student();
             $user = new SignUpForm();
-        if ($model->load(Yii::$app->request->post()) && $user->load(Yii::$app->request->post())) {
+
+            //testing the date through an ajax callback
+        if(Yii::$app->request->isAjax && $model->load($_POST))
+        {
+           Yii::$app->response->format = 'json';
+           return  ActiveForm::validate($model);
+        }
+
+        if ($model->load(Yii::$app->request->post()) && $user->load(Yii::$app->request->post())) 
+        {
                 if ($u = $user->signup()) 
                 {
-                    
-
-            $model->user_id = $u->id;
-            $u->user_type = 'student';
-            $u->save();
-            $model->save();
-            return $this->redirect(['view', 'id' => $model->student_id]);
-            }
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-                'user' => $user,
-            ]);
+                            
+                    $model->user_id = $u->id;
+                    $u->user_type = 'student';
+                    $u->save();
+                    $model->save();
+                    return $this->redirect(['view', 'id' => $model->student_id]);
+                    }
+                } else {
+                    return $this->render('create', [
+                        'model' => $model,
+                        'user' => $user,
+                    ]);
         }
     }
 
