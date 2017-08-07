@@ -39,6 +39,7 @@ class Teacher extends \yii\db\ActiveRecord
             [['user_id', 'school_id', 'domain_id', 'teacher_first_name', 'teacher_last_name', 'teacher_birth_date'], 'required'],
             [['user_id', 'school_id', 'domain_id'], 'integer'],
             [['teacher_birth_date'], 'safe'],
+            ['teacher_birth_date', 'checkDate'],
             [['teacher_first_name', 'teacher_last_name'], 'string', 'max' => 100],
             [['domain_id'], 'exist', 'skipOnError' => true, 'targetClass' => Domain::className(), 'targetAttribute' => ['domain_id' => 'domain_id']],
             [['school_id'], 'exist', 'skipOnError' => true, 'targetClass' => School::className(), 'targetAttribute' => ['school_id' => 'school_id']],
@@ -46,9 +47,16 @@ class Teacher extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * @inheritdoc
-     */
+    public function checkDate($attribute,$params)
+    {
+        $today = Date ('Y-m-d');
+        if($this->teacher_birth_date > $today)
+        {
+            $this->addError($attribute, 'Invalid date, enter a valid one');
+        }
+    }
+
+
     public function attributeLabels()
     {
         return [

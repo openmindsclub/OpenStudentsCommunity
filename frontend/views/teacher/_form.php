@@ -14,7 +14,7 @@ use dosamigos\datepicker\DatePicker;
 
 <div class="teacher-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['enableAjaxValidation'=>true]); ?>
 
 
     <?= $form->field($model, 'teacher_first_name')->textInput(['maxlength' => true]) ?>

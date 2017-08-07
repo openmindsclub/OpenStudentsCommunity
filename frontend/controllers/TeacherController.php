@@ -9,7 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use frontend\models\SignupForm;
-
+use yii\widgets\ActiveForm;
 /**
  * TeacherController implements the CRUD actions for Teacher model.
  */
@@ -66,6 +66,13 @@ class TeacherController extends Controller
     {
         $model = new Teacher();
         $user = new SignupForm();
+
+         if(Yii::$app->request->isAjax && $model->load($_POST))
+        {
+           Yii::$app->response->format = 'json';
+           return  ActiveForm::validate($model);
+        }
+
         if ($model->load(Yii::$app->request->post()) && $user->load(Yii::$app->request->post())) 
         {   
             if($u = $user->signup())
