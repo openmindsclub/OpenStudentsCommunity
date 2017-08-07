@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
+use yii\widgets\ActiveForm;
 
 
 /**
@@ -62,12 +63,21 @@ class PublicationController extends Controller
     public function actionCreate()
     {
         $model = new Publication();
+        //testing the date through an ajax callback
+        if(Yii::$app->request->isAjax && $model->load($_POST))
+        {
+           Yii::$app->response->format = 'json';
+           return  ActiveForm::validate($model);
+        }
+
+
+
         if ($model->load(Yii::$app->request->post()) )
         {        
             //completing the model data to add it in the db
             $model->publication_directory = "";
             $model->user_id = Yii::$app->user->id;
-            $model->publication_creation_time = Date('Y-m-d h:m:s');
+            $model->publication_creation_time = Date('Y-m-d H:i:s');
             $model->publication_rate=0;
             $model->save();
             //need the publication id to save the directory

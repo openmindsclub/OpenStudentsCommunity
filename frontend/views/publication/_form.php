@@ -14,7 +14,7 @@ use dosamigos\datepicker\DatePicker;
 
 <div class="publication-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['enableAjaxValidation'=>true]); ?>
 
     <?= $form->field($model,'domain')->dropDownList(
                                ArrayHelper::map(Domain::find()->all(),'domain_id','domain_name'),

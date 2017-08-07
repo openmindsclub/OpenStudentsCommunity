@@ -51,6 +51,7 @@ class Publication extends \yii\db\ActiveRecord
             [['publication_creation_time', 'publication_date'], 'safe'],
             [['publication_name'], 'string', 'max' => 255],
             [['domain','specialty'], 'required'],
+            ['publication_date', 'checkDate'],
             [['publication_directory'], 'string', 'max' => 256],
             [['module_id'], 'exist', 'skipOnError' => true, 'targetClass' => Module::className(), 'targetAttribute' => ['module_id' => 'module_id']],
             [['tag_id'], 'exist', 'skipOnError' => true, 'targetClass' => Tag::className(), 'targetAttribute' => ['tag_id' => 'tag_id']],
@@ -59,16 +60,24 @@ class Publication extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * @inheritdoc
-     */
+    public function checkDate($attribute,$params)
+    {
+        $today = Date ('Y-m-d');
+        if($this->publication_date > $today)
+        {
+            $this->addError($attribute, 'Invalid date, enter a valid one');
+        }
+    }
+
+
+
     public function attributeLabels()
     {
         return [
             'publication_id' => 'Publication ID',
             'user_id' => 'User ID',
-            'module_id' => 'Module ID',
-            'tag_id' => 'Tag ID',
+            'module_id' => 'Module',
+            'tag_id' => 'Type of publication',
             'publication_name' => 'Publication Name',
             'publication_text_content' => 'Publication Text Content',
             'publication_directory' => 'Publication Directory',

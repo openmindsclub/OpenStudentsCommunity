@@ -15,12 +15,6 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'comment_id') ?>
-
-    <?= $form->field($model, 'user_id') ?>
-
-    <?= $form->field($model, 'publication_id') ?>
-
     <?= $form->field($model, 'comment_text_content') ?>
 
     <?= $form->field($model, 'comment_file_path') ?>
