@@ -9,6 +9,8 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use frontend\models\SignupForm;
+use yii\widgets\ActiveForm;
+
 
 /**
  * OtherController implements the CRUD actions for Other model.
@@ -66,6 +68,14 @@ class OtherController extends Controller
     {
         $model = new Other();
         $user = new SignupForm();
+
+        //testing the date through an ajax callback
+        if(Yii::$app->request->isAjax && $model->load($_POST))
+        {
+           Yii::$app->response->format = 'json';
+           return  ActiveForm::validate($model);
+        }
+
         if ($model->load(Yii::$app->request->post()) && $user->load(Yii::$app->request->post())) 
         {
             if($u = $user->signup())

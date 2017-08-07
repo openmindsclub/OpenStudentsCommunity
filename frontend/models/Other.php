@@ -36,11 +36,23 @@ class Other extends \yii\db\ActiveRecord
             [['user_id', 'other_first_name', 'other_last_name', 'other_birth_date', 'other_activity'], 'required'],
             [['user_id'], 'integer'],
             [['other_birth_date'], 'safe'],
+            ['other_birth_date', 'checkDate'],
             [['other_activity'], 'string'],
             [['other_first_name', 'other_last_name'], 'string', 'max' => 100],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
+
+
+      public function checkDate($attribute,$params)
+    {
+        $today = Date ('Y-m-d');
+        if($this->other_birth_date > $today)
+        {
+            $this->addError($attribute, 'Invalid date, enter a valid one');
+        }
+    }
+
 
     /**
      * @inheritdoc
