@@ -32,6 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'comment_id',
             'user_id',
             'notification_time',
+            'notification_seen',
         ],
     ]) ?>
 

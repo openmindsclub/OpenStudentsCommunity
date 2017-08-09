@@ -19,7 +19,7 @@ class NotificationSearch extends Notification
     {
         return [
             [['notification_id', 'comment_id', 'user_id'], 'integer'],
-            [['notification_time'], 'safe'],
+            [['notification_time', 'notification_seen'], 'safe'],
         ];
     }
 
@@ -64,6 +64,8 @@ class NotificationSearch extends Notification
             'user_id' => $this->user_id,
             'notification_time' => $this->notification_time,
         ]);
+
+        $query->andFilterWhere(['like', 'notification_seen', $this->notification_seen]);
 
         return $dataProvider;
     }

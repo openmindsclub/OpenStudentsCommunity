@@ -12,6 +12,7 @@ use common\models\User;
  * @property integer $comment_id
  * @property integer $user_id
  * @property string $notification_time
+ * @property string $notification_seen
  *
  * @property Comment $comment
  * @property User $user
@@ -32,9 +33,10 @@ class Notification extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['comment_id', 'user_id', 'notification_time'], 'required'],
+            [['comment_id', 'user_id', 'notification_time', 'notification_seen'], 'required'],
             [['comment_id', 'user_id'], 'integer'],
             [['notification_time'], 'safe'],
+            [['notification_seen'], 'string'],
             [['comment_id'], 'exist', 'skipOnError' => true, 'targetClass' => Comment::className(), 'targetAttribute' => ['comment_id' => 'comment_id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
@@ -50,6 +52,7 @@ class Notification extends \yii\db\ActiveRecord
             'comment_id' => 'Comment ID',
             'user_id' => 'User ID',
             'notification_time' => 'Notification Time',
+            'notification_seen' => 'Notification Seen',
         ];
     }
 

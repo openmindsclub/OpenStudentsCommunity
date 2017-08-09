@@ -18,6 +18,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'notification_time')->textInput() ?>
 
+    <?= $form->field($model, 'notification_seen')->dropDownList([ 'seen' => 'Seen', 'unseen' => 'Unseen', '' => '', ], ['prompt' => '']) ?>
+
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
